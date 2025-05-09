@@ -26,3 +26,12 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            for k, v in map(lambda x: x.split(":"), line.strip().split("\t")[4].split(",")):
+                v = int(v)
+                data.setdefault(k, [0, float('inf')])
+                data[k][0] = max(v, data[k][0])
+                data[k][1] = min(v, data[k][1])
+        return sorted((k, mi, ma) for k, (ma, mi) in data.items())

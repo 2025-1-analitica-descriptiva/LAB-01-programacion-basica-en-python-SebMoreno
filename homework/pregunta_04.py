@@ -26,3 +26,11 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            date = line.split("\t")[2]
+            month = date.split("-")[1]
+            data.setdefault(month, 0)
+            data[month] += 1
+        return sorted(data.items())

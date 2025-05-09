@@ -16,3 +16,12 @@ def pregunta_11():
 
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            line = line.strip().split('\t')
+            value = int(line[1])
+            for letter in line[3].split(","):
+                data.setdefault(letter, 0)
+                data[letter] += value
+        return data

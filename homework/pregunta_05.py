@@ -15,3 +15,13 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            line = line.split("\t")
+            letter = line[0]
+            value = int(line[1])
+            data.setdefault(letter, [0, float('inf')])
+            data[letter][0] = max(value, data[letter][0])
+            data[letter][1] = min(value, data[letter][1])
+        return sorted((k, ma, mi) for k, (ma, mi) in data.items())

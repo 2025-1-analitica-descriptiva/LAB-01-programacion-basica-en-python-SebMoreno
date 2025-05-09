@@ -15,3 +15,12 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            line = line.strip().split("\t")
+            letter = line[0]
+            value = sum(int(v) for _, v in map(lambda x: x.split(":"), line[4].split(",")))
+            data.setdefault(letter, 0)
+            data[letter] += value
+        return data

@@ -24,3 +24,10 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            for k, _ in map(lambda x: x.split(":"), line.strip().split("\t")[4].split(",")):
+                data.setdefault(k, 0)
+                data[k] += 1
+        return data
